@@ -21,7 +21,7 @@ public:
 	{
 
 		friend MyList;
-		public:
+	public:
 		reverse_iterator()
 		{
 		}
@@ -44,7 +44,7 @@ public:
 		// 연산자 겹지정 중에 
 		void operator++()
 		{
-			CurNode = CurNode->Next;
+			CurNode = CurNode->Prev;
 		}
 
 
@@ -90,7 +90,7 @@ public:
 		ListNode* CurNode = nullptr;
 	};
 
-	
+
 
 
 	MyList()
@@ -114,15 +114,15 @@ public:
 	}
 
 
-iterator begin()
-{
-	return iterator(Start->Next);
-}
+	iterator begin()
+	{
+		return iterator(Start->Next);
+	}
 
-iterator end()
-{
-	return iterator(End);
-}
+	iterator end()
+	{
+		return iterator(End);
+	}
 
 	reverse_iterator rbegin()
 	{
@@ -168,39 +168,39 @@ iterator end()
 
 	}
 
-iterator erase(iterator& _Iter)
-{
-	if (_Iter.CurNode == Start)
+	iterator erase(iterator& _Iter)
 	{
-		MsgBoxAssert("Start를 삭제하려고 했습니다.");
-	}
+		if (_Iter.CurNode == Start)
+		{
+			MsgBoxAssert("Start를 삭제하려고 했습니다.");
+		}
 
-	if (_Iter.CurNode == End)
-	{
-		MsgBoxAssert("End를 삭제하려고 했습니다.");
-	}
+		if (_Iter.CurNode == End)
+		{
+			MsgBoxAssert("End를 삭제하려고 했습니다.");
+		}
 
-	iterator ReturnIter;
-
-	if (nullptr != _Iter.CurNode)
-	{
-		ReturnIter = iterator(_Iter.CurNode->Next);
-
-		ListNode* PrevNode = _Iter.CurNode->Prev;
-		ListNode* NextNode = _Iter.CurNode->Next;
-
-		PrevNode->Next = NextNode;
-		NextNode->Prev = PrevNode;
+		iterator ReturnIter;
 
 		if (nullptr != _Iter.CurNode)
 		{
-			delete _Iter.CurNode;
-			_Iter.CurNode = nullptr;
-		}
-	}
+			ReturnIter = iterator(_Iter.CurNode->Next);
 
-	return ReturnIter;
-}
+			ListNode* PrevNode = _Iter.CurNode->Prev;
+			ListNode* NextNode = _Iter.CurNode->Next;
+
+			PrevNode->Next = NextNode;
+			NextNode->Prev = PrevNode;
+
+			if (nullptr != _Iter.CurNode)
+			{
+				delete _Iter.CurNode;
+				_Iter.CurNode = nullptr;
+			}
+		}
+
+		return ReturnIter;
+	}
 
 
 protected:
@@ -225,8 +225,8 @@ int main()
 			// NewList.push_front();
 		}
 
-		 MyList::reverse_iterator rStartIter = NewList.rbegin();
-		 MyList::reverse_iterator rEndIter = NewList.rend();
+		MyList::reverse_iterator rStartIter = NewList.rbegin();
+		MyList::reverse_iterator rEndIter = NewList.rend();
 
 		for (/*std::list<int>::iterator StartIter = NewList.begin()*/
 			; rStartIter != rEndIter
