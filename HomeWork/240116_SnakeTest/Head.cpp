@@ -11,7 +11,7 @@
 
 void Head::Update()
 {
-	
+
 	int InputCount = _kbhit();
 	if (0 == InputCount)
 	{
@@ -24,7 +24,7 @@ void Head::Update()
 	int Select = _getch();
 
 	// InputCount = _kbhit();
-	
+
 
 
 	// X Y
@@ -85,16 +85,17 @@ void Head::Update()
 		return;
 	}
 
-	
+
 
 	Body* CurBody = BodyManager::GetCurBody();//이게 뭘까?
 
+	
 
 	if (CurBody->GetPos() == GetPos())
 	{
 		
 		CurBody->SetPos(PreHeadPos);
-
+	
 		int2 CurObdyPos = CurBody->GetPos();
 		Back = CurBody;
 		//여기서 바디의 앞부분을 정해주고 
@@ -104,16 +105,24 @@ void Head::Update()
 	else
 	{
 		Part* CurBack = Back;
-
+	
 		while (nullptr != CurBack)
 		{
-			CurBack->SetPos(CurHeadPos);
-			CurBack = CurBack->GetBack();
-		}
+		//	CurBack->SetPos(CurHeadPos);
+		//	CurBack = CurBack->GetBack();
+			//여기 까지는 2번째 자식이 안따라옴
 
+			//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
+			
+		}
+	
 		//여기서 앞부분의 위치를 계속 입력받는다면?
 	}
-
 	
 
+
 }
+
+
+
+

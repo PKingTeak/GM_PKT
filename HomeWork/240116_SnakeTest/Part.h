@@ -9,6 +9,8 @@ public:
 		return Back;
 	}
 
+	void Follow();
+
 protected:
 	Part* Front = nullptr;
 	Part* Back = nullptr;

@@ -5,11 +5,8 @@ class Head : public Part
 {
 public:
 	
-	void FollowHead(Part* _Body)
-	{
-		
-
-	}
+	void Follow(Part* _CurBack);
+	
 
 protected:
 	void Update() override;
