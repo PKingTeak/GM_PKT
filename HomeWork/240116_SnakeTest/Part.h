@@ -3,6 +3,11 @@
 
 class Part : public ConsoleObject
 {
+public:
+	Part* GetBack()
+	{
+		return Back;
+	}
 
 protected:
 	Part* Front = nullptr;

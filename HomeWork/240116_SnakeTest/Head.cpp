@@ -11,15 +11,21 @@
 
 void Head::Update()
 {
+	
 	int InputCount = _kbhit();
 	if (0 == InputCount)
 	{
 		return;
 	}
 
+	int2 CurHeadPos = this->GetPos(); //현재 위치
+	int2 PreHeadPos; //이전 위치
+
 	int Select = _getch();
 
 	// InputCount = _kbhit();
+	
+
 
 	// X Y
 	// 1 0
@@ -31,7 +37,9 @@ void Head::Update()
 	case 'a':
 		if (Dir != Right)
 		{
+
 			Dir = Left;
+			PreHeadPos = CurHeadPos;
 			AddPos(Dir);
 		}
 		break;
@@ -40,6 +48,7 @@ void Head::Update()
 		if (Dir != Up)
 		{
 			Dir = Down;
+			PreHeadPos = CurHeadPos;
 			AddPos(Dir);
 		}
 		break;
@@ -48,6 +57,7 @@ void Head::Update()
 		if (Dir != Down)
 		{
 			Dir = Up;
+			PreHeadPos = CurHeadPos;
 			AddPos(Dir);
 		}
 
@@ -57,6 +67,7 @@ void Head::Update()
 		if (Dir != Left)
 		{
 			Dir = Right;
+			PreHeadPos = CurHeadPos;
 			AddPos(Dir);
 		}
 
@@ -74,12 +85,35 @@ void Head::Update()
 		return;
 	}
 
-	Body* CurBody = BodyManager::GetCurBody();
+	
+
+	Body* CurBody = BodyManager::GetCurBody();//이게 뭘까?
+
 
 	if (CurBody->GetPos() == GetPos())
 	{
+		
+		CurBody->SetPos(PreHeadPos);
+
+		int2 CurObdyPos = CurBody->GetPos();
 		Back = CurBody;
+		//여기서 바디의 앞부분을 정해주고 
+		this->Back;
 		BodyManager::ResetBody();
 	}
+	else
+	{
+		Part* CurBack = Back;
+
+		while (nullptr != CurBack)
+		{
+			CurBack->SetPos(CurHeadPos);
+			CurBack = CurBack->GetBack();
+		}
+
+		//여기서 앞부분의 위치를 계속 입력받는다면?
+	}
+
+	
 
 }
