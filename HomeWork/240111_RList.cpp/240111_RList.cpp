@@ -4,7 +4,7 @@
 
 typedef int DataType;
 
-class MyList
+class MyList  
 {
 private:
 	class ListNode
@@ -17,44 +17,6 @@ private:
 
 
 public:
-	class reverse_iterator
-	{
-
-		friend MyList;
-	public:
-		reverse_iterator()
-		{
-		}
-
-		reverse_iterator(ListNode* _CurNode)
-			: CurNode(_CurNode)
-		{
-		}
-
-		bool operator!=(const reverse_iterator& _Other)
-		{
-			return CurNode != _Other.CurNode;
-		}
-
-		DataType& operator*()
-		{
-			return CurNode->Data;
-		}
-
-		// 연산자 겹지정 중에 
-		void operator++()
-		{
-			CurNode = CurNode->Prev;
-		}
-
-
-	private:
-		ListNode* CurNode = nullptr;
-
-
-	};
-
-
 	class iterator
 	{
 		friend MyList;
@@ -80,7 +42,7 @@ public:
 		}
 
 		// 연산자 겹지정 중에 
-		void operator++()
+		virtual void operator++()
 		{
 			CurNode = CurNode->Next;
 		}
@@ -89,7 +51,70 @@ public:
 	private:
 		ListNode* CurNode = nullptr;
 	};
+	class reverse_iterator :public iterator
+	{
 
+		friend MyList;
+	public:
+		
+		reverse_iterator()
+		{
+		}
+		
+		reverse_iterator(ListNode* _CurNode)
+			: CurNode(_CurNode)
+		{
+		}
+		//겹친다
+		bool operator!=(const reverse_iterator& _Other)
+		{
+			return CurNode != _Other.CurNode;
+		}
+		//겹친다
+		DataType& operator*()
+		{
+			return CurNode->Data;
+		}
+
+		// 연산자 겹지정 중에 
+		void operator++()
+		{
+			CurNode = CurNode->Prev;
+		}
+
+
+	private:
+		ListNode* CurNode = nullptr;
+
+
+	};
+
+
+	
+	class Reiterator :public iterator
+	{
+		Reiterator()
+		{
+		}
+
+		Reiterator(ListNode* _CurNode)
+			: CurNode(_CurNode)
+		{
+		}
+		
+		// 연산자 겹지정 중에 
+		void operator++() override
+		{
+			CurNode = CurNode->Prev;
+		}
+
+
+	private:
+		ListNode* CurNode = nullptr;
+
+
+
+	};
 
 
 
@@ -213,7 +238,7 @@ private:
 
 int main()
 {
-	LeckCheck;
+	LeackCheck;
 
 	{
 		std::cout << "std 리스트" << std::endl;
