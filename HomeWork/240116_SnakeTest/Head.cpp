@@ -108,15 +108,16 @@ void Head::Update()
 	
 		while (nullptr != CurBack)
 		{
-		//	CurBack->SetPos(CurHeadPos);
-		//	CurBack = CurBack->GetBack();
-			//여기 까지는 2번째 자식이 안따라옴
-
-			//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
-			
+		CurBack->SetPos(CurHeadPos);
+		CurBack = CurBack->GetBack();
+	//	this->Back = CurBack->Follow();
+	//	//여기 까지는 2번째 자식이 안따라옴
+	//
+	//		//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
+	//		
 		}
 	
-		//여기서 앞부분의 위치를 계속 입력받는다면?
+	
 	}
 	
 

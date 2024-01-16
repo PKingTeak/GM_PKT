@@ -4,12 +4,13 @@
 class Part : public ConsoleObject
 {
 public:
+
 	Part* GetBack()
 	{
 		return Back;
 	}
 
-	void Follow();
+//	void Follow();
 
 protected:
 	Part* Front = nullptr;
