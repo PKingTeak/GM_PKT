@@ -34,6 +34,12 @@ public:
 		return PrePos;
 	}
 	 void Follow();
+	// void SetBack(Part* _Back);
+
+	 
+	 Part* GetLastBack();
+
+	 
 
 
 protected:

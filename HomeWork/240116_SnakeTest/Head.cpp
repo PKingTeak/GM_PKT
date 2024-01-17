@@ -92,13 +92,10 @@ void Head::Update()
 
 	if (CurBody->GetPos() == GetPos())
 	{
-		Body* PreBody = CurBody;
-		PreBody->SetPos(GetPrePos());
-		this->Back = PreBody;
-
-
-		//Head의 back
-		PreBody->SetFront(this);
+		this;
+		Part* LastBack = GetLastBack();
+		LastBack->SetBack(CurBody);
+		CurBody->SetPos(LastBack->GetPrePos());
 
 		BodyManager::ResetBody();
 
@@ -109,24 +106,7 @@ void Head::Update()
 		Follow();
 
 
-		//Part* CurBack = this->Back; //머리
-
-		//while (nullptr != CurBack)
-		//{
-		//	CurBack->SetPos(CurHeadPos);
-		//	//CurBack = CurBack->GetFront(Back);
-
-		//	//CurBack = Follow(CurBack);
-		//	
-
-		//	//여기 까지는 2번째 자식이 안따라옴
-
-
-		//	
-		//	//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
-		//	
-		//}
-
+		
 	}
 
 
