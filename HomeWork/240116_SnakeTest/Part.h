@@ -9,11 +9,37 @@ public:
 	{
 		return Back;
 	}
+	void SetBack(Part* _Back)
+	{
+		Back = _Back;
+		
+	}
 
-//	void Follow();
+
+	void SetFront(Part* _Front)
+	{
+		Front = _Front;
+	}
+	Part* GetFront()
+	{
+		return Front;
+	}
+	void SetPrePos(int2 _PrePos)
+	{
+		PrePos = _PrePos;
+	}
+
+	int2  GetPrePos()
+	{
+		return PrePos;
+	}
+	 void Follow();
+
 
 protected:
 	Part* Front = nullptr;
 	Part* Back = nullptr;
+	int2 PrePos;
+
 };
 

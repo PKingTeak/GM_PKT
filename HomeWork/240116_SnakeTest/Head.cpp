@@ -19,7 +19,7 @@ void Head::Update()
 	}
 
 	int2 CurHeadPos = this->GetPos(); //현재 위치
-	int2 PreHeadPos; //이전 위치
+	; //이전 위치
 
 	int Select = _getch();
 
@@ -39,7 +39,7 @@ void Head::Update()
 		{
 
 			Dir = Left;
-			PreHeadPos = CurHeadPos;
+			SetPrePos(CurHeadPos);
 			AddPos(Dir);
 		}
 		break;
@@ -48,7 +48,7 @@ void Head::Update()
 		if (Dir != Up)
 		{
 			Dir = Down;
-			PreHeadPos = CurHeadPos;
+			SetPrePos(CurHeadPos);
 			AddPos(Dir);
 		}
 		break;
@@ -57,7 +57,7 @@ void Head::Update()
 		if (Dir != Down)
 		{
 			Dir = Up;
-			PreHeadPos = CurHeadPos;
+			SetPrePos(CurHeadPos);
 			AddPos(Dir);
 		}
 
@@ -67,7 +67,7 @@ void Head::Update()
 		if (Dir != Left)
 		{
 			Dir = Right;
-			PreHeadPos = CurHeadPos;
+			SetPrePos(CurHeadPos);
 			AddPos(Dir);
 		}
 
@@ -87,39 +87,47 @@ void Head::Update()
 
 
 
-	Body* CurBody = BodyManager::GetCurBody();//이게 뭘까?
+	Body* CurBody = BodyManager::GetCurBody();// 이게 바디
 
-	
 
 	if (CurBody->GetPos() == GetPos())
 	{
-		
-		CurBody->SetPos(PreHeadPos);
-	
-		int2 CurObdyPos = CurBody->GetPos();
-		Back = CurBody;
-		//여기서 바디의 앞부분을 정해주고 
-		this->Back;
+		Body* PreBody = CurBody;
+		PreBody->SetPos(GetPrePos());
+		this->Back = PreBody;
+
+
+		//Head의 back
+		PreBody->SetFront(this);
+
 		BodyManager::ResetBody();
+
 	}
+
 	else
 	{
-		Part* CurBack = Back;
-	
-		while (nullptr != CurBack)
-		{
-		CurBack->SetPos(CurHeadPos);
-		CurBack = CurBack->GetBack();
-	//	this->Back = CurBack->Follow();
-	//	//여기 까지는 2번째 자식이 안따라옴
-	//
-	//		//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
-	//		
-		}
-	
-	
+		Follow();
+
+
+		//Part* CurBack = this->Back; //머리
+
+		//while (nullptr != CurBack)
+		//{
+		//	CurBack->SetPos(CurHeadPos);
+		//	//CurBack = CurBack->GetFront(Back);
+
+		//	//CurBack = Follow(CurBack);
+		//	
+
+		//	//여기 까지는 2번째 자식이 안따라옴
+
+
+		//	
+		//	//재귀 호출하면 this->back을 계속 바꿀수 있으니까 		
+		//	
+		//}
+
 	}
-	
 
 
 }

@@ -1,5 +1,6 @@
 #include "Part.h"
-/*
+
+
 void Part::Follow()
 {
 	if (nullptr == Back)
@@ -7,10 +8,15 @@ void Part::Follow()
 		return;
 	}
 
-	int2 Pos = this->GetPos();
-	Back->SetPos(Pos);
+
+//	this->SetPrePos(GetPrePos());
+	PrePos = this->GetPrePos();
+	
+
+	Back->SetPos(PrePos);
 
 	Back->Follow();
-	
+	//Àç±Í·Î
 }
-*/
+
+

@@ -5,7 +5,6 @@ class Head : public Part
 {
 public:
 	
-	void Follow(Part* _CurBack);
 	
 
 protected:
