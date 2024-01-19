@@ -35,9 +35,9 @@ public:
 	}
 	 void Follow();
 	// void SetBack(Part* _Back);
-
+	 int2 FollowPosition();
 	 
-	 Part* GetLastBack();
+	Part* GetLastBack();
 
 	 
 

@@ -92,8 +92,10 @@ void Head::Update()
 
 	if (CurBody->GetPos() == GetPos())
 	{
-		this;
-		Part* LastBack = GetLastBack();
+
+		Part* LastBack = GetLastBack(); // 이거는 백이 끊겨서 결국 
+		//원래 있던 몸통을 자르고 새로 연결하기 때문에 끝인걸 채크해줘야된다. 
+		// 결굴 head에 맨 끝에 있는곳으로 채크하고 배치해야된다. 
 		LastBack->SetBack(CurBody);
 		CurBody->SetPos(LastBack->GetPrePos());
 
